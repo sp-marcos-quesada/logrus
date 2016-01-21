@@ -45,7 +45,7 @@ type Logger struct {
 func New() *Logger {
 	return &Logger{
 		Out:       os.Stderr,
-		Formatter: NewTextFormatter(),
+		Formatter: &TextFormatter{Mutex: &sync.Mutex{}},
 		Hooks:     make(LevelHooks),
 		Level:     InfoLevel,
 	}

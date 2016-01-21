@@ -1,14 +1,15 @@
 package main
 
 import (
-	"github.com/Sirupsen/logrus"
+	"github.com/sp-marcos-quesada/logrus"
+	"sync"
 )
 
 var log = logrus.New()
 
 func init() {
 	log.Formatter = new(logrus.JSONFormatter)
-	log.Formatter = logrus.NewTextFormatter()// new(logrus.TextFormatter) // default
+	log.Formatter = &logrus.TextFormatter{Mutex: &sync.Mutex{}}
 	log.Level = logrus.DebugLevel
 }
 

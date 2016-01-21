@@ -59,12 +59,6 @@ type TextFormatter struct {
 	Mutex *sync.Mutex
 }
 
-func NewTextFormatter() *TextFormatter {
-	return &TextFormatter{
-		Mutex: &sync.Mutex{},
-	}
-}
-
 func (f *TextFormatter) Format(entry *Entry) ([]byte, error) {
 	var keys []string = make([]string, 0, len(entry.Data))
 	for k := range entry.Data {

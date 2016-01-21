@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/Sirupsen/logrus"
+	"github.com/sp-marcos-quesada/logrus"
 	"gopkg.in/gemnasium/logrus-airbrake-hook.v2"
+	"sync"
 )
 
 var log = logrus.New()
 
 func init() {
-	//log.Formatter = new(logrus.TextFormatter) // default
-	log.Formatter = logrus.NewTextFormatter()
+	log.Formatter = &logrus.TextFormatter{Mutex: &sync.Mutex{}}
 	log.Hooks.Add(airbrake.NewHook(123, "xyz", "development"))
 }
 
